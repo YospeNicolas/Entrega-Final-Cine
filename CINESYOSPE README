@@ -1,0 +1,68 @@
+1- Introducción: 
+
+El sistema de administración y trabajo en cines es una solución integral diseñada para optimizar las operaciones en cines multifranquicia, mejorando la eficiencia operativa y 
+la experiencia del cliente. Proporciona herramientas avanzadas para la gestión de películas, venta de entradas, control de inventario y gestión de empleados.
+
+2- Objetivo: 
+
+El principal objetivo del sistema es mejorar la eficiencia operativa y la rentabilidad de los cines. Al automatizar procesos clave y centralizar la información, 
+permite ofrecer una experiencia de alta calidad a los clientes mientras se optimizan los recursos disponibles. Objetivos específicos incluyen optimizar la programación de películas, 
+facilitar la venta de entradas, gestionar el inventario y mejorar la gestión de empleados.
+
+3- Situación Problemática: 
+
+Antes de la implementación del sistema, los cines enfrentaban desafíos como la programación manual de películas, control de inventario ineficiente, procesos de venta lentos y gestión de empleados complicada.
+
+4- Modelo de Negocio: 
+
+El modelo de negocio se basa en la prestación de servicios de entretenimiento a través de la proyección de películas. Los ingresos provienen principalmente de la venta de entradas, 
+alimentos y bebidas, así como de la comercialización de productos relacionados con las películas. El sistema se ofrece como un servicio con diferentes planes de suscripción adaptados a 
+las necesidades de cada cine. Su objetivo es mejorar la eficiencia y rentabilidad del negocio.
+
+5- Implementación:
+
+El sistema de administración de cines emplea tecnología moderna para simplificar diversas operaciones en el negocio. Se basa en SQL para ejecutar consultas y gestionar los datos almacenados 
+en la base de datos. Esto posibilita a los usuarios realizar tareas como buscar películas en exhibición, administrar ventas de boletos, revisar el historial de transacciones y mantener 
+actualizado el inventario de alimentos y bebidas.
+La estructura de la base de datos incorpora claves principales, claves foráneas y otras medidas restrictivas para salvaguardar la coherencia de los datos y establecer vínculos entre entidades 
+como películas, salas, empleados y clientes. Este enfoque garantiza un flujo de información exacto y confiable en todas las facetas de la gestión cinematográfica.
+
+6- Vistas
+
+Las vistas en el sistema de gestión de cines ofrecen consultas predefinidas para acceder y visualizar datos específicos de manera conveniente. Están diseñadas para proporcionar información 
+clave sobre películas, empleados, ventas, asientos y más. Aquí tienes un resumen de cada vista:
+
+Películas por Género: Muestra el título de la película junto con su género, facilitando la organización por categorías y la programación de horarios.
+Empleados por Sucursal: Presenta el nombre y apellido de los empleados junto con la sucursal en la que trabajan, simplificando la asignación de tareas y la gestión del personal.
+Ventas Detalladas: Ofrece información detallada sobre las ventas, incluyendo el nombre del empleado que realizó la venta y el total, útil para evaluar el desempeño y la rentabilidad.
+Asientos Disponibles: Muestra los asientos libres en cada sala, facilitando a los clientes la elección al comprar entradas.
+Reservas por Cliente: Proporciona una visión general de las reservas de cada cliente, ayudando a comprender sus hábitos y lealtad, así como a personalizar el servicio.
+Películas Proyectadas Hoy: Indica las películas en cartelera para el día en cada sala, facilitando la planificación de visitas y la gestión de horarios.
+Ingresos Diarios: Muestra los ingresos generados por ventas cada día, permitiendo un seguimiento del desempeño financiero y la toma de decisiones sobre estrategias de precios.
+Películas Más Vendidas: Presenta las películas con más ventas y su número total, útil para la programación y adquisición de contenido basada en la popularidad.
+
+7- Funciones:
+
+CalcularTotalVentasEmpleado: Calcula el total de ventas realizadas por un empleado en un período específico, proporcionando información sobre su desempeño en ventas dentro de ese lapso.
+ObtenerNombreCompletoEmpleado: Devuelve el nombre completo de un empleado dado su ID, útil para generar informes o visualizar información del empleado.
+ContarReservasPorCliente: Cuenta el número de reservas realizadas por un cliente específico a partir de su ID, facilitando el seguimiento del historial de reservas y la comprensión de las preferencias de reserva.
+ObtenerDuracionTotalPeliculasDirector: Obtiene la duración total de las películas dirigidas por un director específico, permitiendo evaluar su prolificidad y estilo como director.
+ObtenerNombreGenero: Recupera el nombre del género de una película dado su ID de género, útil para presentar información o clasificar películas por género.
+CalcularEdadCliente: Calcula la edad de un cliente basada en su año de nacimiento, útil para la segmentación demográfica y la personalización de la experiencia del cliente.
+ObtenerNombrePromocion: Obtiene el nombre de una promoción dado su ID, facilitando la visualización de información de promociones en interfaces de usuario o informes.
+ObtenerDescripcionPelicula: Obtiene la descripción de una película dado su ID, facilitando la recuperación de la sinopsis de una película para proporcionar información detallada en 
+interfaces de usuario o sistemas de gestión.
+
+8- Stored Procedures:
+
+RegistrarVentaBoletos: Registra una nueva venta de boletos en la base de datos, insertando una nueva fila en la tabla Ventas con el ID del empleado que realiza la venta, la fecha y el total de la venta 
+como parámetros.
+RegistrarReservaAsientos: Registra una nueva reserva de asientos en la base de datos, insertando una nueva fila en la tabla Reservas con el ID del cliente, el ID del horario de proyección, 
+el número de asientos reservados y el total de la reserva como parámetros.
+ReporteVentasPorEmpleado: Genera un reporte de ventas por empleado en un rango de fechas específico, realizando una consulta para obtener el nombre del empleado y el total de ventas realizadas 
+por él en el período especificado, utilizando la fecha de inicio y fin como parámetros.
+
+9- Triggers:
+
+ActualizarTotalVenta: Se activa después de insertar un nuevo registro en la tabla DetallesVenta, calculando el nuevo total de venta para la venta asociada y actualizando el campo TotalVenta en la tabla Ventas con el valor calculado.
+ActualizarIngresosDiarios: Se activa después de insertar un nuevo registro en la tabla Ventas, calculando el total de ingresos generados en el día de la venta y actualizando el registro correspondiente en la tabla HistorialIngresos. Si ya existe un registro para esa fecha, se actualiza el valor de IngresoTotal con el nuevo total de ingresos.
